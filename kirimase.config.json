@@ -1,0 +1,18 @@
+{
+  "hasSrc": true,
+  "packages": [
+    "shadcn-ui",
+    "prisma",
+    "clerk",
+    "trpc",
+    "stripe"
+  ],
+  "preferredPackageManager": "yarn",
+  "t3": false,
+  "alias": "@",
+  "rootPath": "src/",
+  "componentLib": "shadcn-ui",
+  "orm": "prisma",
+  "driver": "sqlite",
+  "auth": "clerk"
+}
