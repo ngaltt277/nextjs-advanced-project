@@ -16,8 +16,8 @@ export default authMiddleware({
         "admin" &&
       req.nextUrl.pathname === "/"
     ) {
-      const orgSelection = new URL("/admin", req.url);
-      return NextResponse.redirect(orgSelection);
+      const adminPath = new URL("/admin", req.url);
+      return NextResponse.redirect(adminPath);
     }
   },
 });

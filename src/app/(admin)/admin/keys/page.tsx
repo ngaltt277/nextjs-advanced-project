@@ -1,5 +1,6 @@
-import KeyList from "@/components/keys/KeyList";
+import { DataTable } from "@/components/table/DataTable";
 import { getSubscriptions } from "@/lib/api/subscriptions/queries";
+import { columns } from "./columns";
 
 export default async function Keys() {
   const { subscriptions } = await getSubscriptions();
@@ -10,7 +11,7 @@ export default async function Keys() {
         <h1 className="text-lg font-medium">Keys</h1>
       </div>
       <div className="w-full overflow-auto">
-        <KeyList subscriptions={subscriptions} />
+        <DataTable columns={columns} data={subscriptions} filterColumn="id" />
       </div>
     </main>
   );

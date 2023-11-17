@@ -15,9 +15,9 @@ export default async function RootLayout({ children }: Props) {
   await checkAuth();
 
   return (
-    <main className="max-w-3xl mx-auto md:p-0 p-6">
+    <div className="max-w-3xl mx-auto md:p-0 p-6">
       <Navbar />
       {children}
-    </main>
+    </div>
   );
 }

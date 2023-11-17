@@ -2,7 +2,7 @@ import React from "react";
 
 const Admin = async () => {
   return (
-    <main className="flex-1 p-6">
+    <div className="flex-1 p-6">
       <h1 className="text-3xl font-semibold">Welcome back!</h1>
       <p className="mt-2 text-gray-600">
         Here&apos;s what&apos;s been happening since your last visit.
@@ -22,7 +22,7 @@ const Admin = async () => {
           </p>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

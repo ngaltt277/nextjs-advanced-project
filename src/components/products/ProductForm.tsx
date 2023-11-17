@@ -7,7 +7,6 @@ import {
 } from "@/lib/db/schema/products";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import {
   Form,
   FormControl,
@@ -87,7 +86,8 @@ const ProductForm = ({ product, closeModal }: Props) => {
         return "Updating...";
       }
       return "Update";
-    } else if (isCreating) {
+    }
+    if (isCreating) {
       return "Creating...";
     }
     return "Create";
@@ -105,7 +105,6 @@ const ProductForm = ({ product, closeModal }: Props) => {
               <FormControl>
                 <Input {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}

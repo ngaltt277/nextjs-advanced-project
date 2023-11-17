@@ -22,10 +22,10 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <div className="flex">
-      <Aside session={session} />
+      <Aside />
       <main className="flex-grow p-3">
         <div className="flex justify-end mb-4">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <ModeToggle />
             <UserButton afterSignOutUrl="/" />
           </div>

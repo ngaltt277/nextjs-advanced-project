@@ -1,11 +1,9 @@
 import ProductCard from "@/components/products/ProductCard";
 import { Button } from "@/components/ui/button";
-import { getProducts } from "@/lib/api/products/queries";
 import { getSubscriptionsByUserId } from "@/lib/api/subscriptions/queries";
 import Link from "next/link";
 
 export default async function Billing() {
-  const { products } = await getProducts();
   const { subscriptions } = await getSubscriptionsByUserId();
 
   return (

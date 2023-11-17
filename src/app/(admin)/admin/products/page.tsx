@@ -1,6 +1,7 @@
-import ProductList from "@/components/products/ProductList";
 import NewProductModal from "@/components/products/ProductModal";
 import { getProducts } from "@/lib/api/products/queries";
+import { DataTable } from "@/components/table/DataTable";
+import { columns } from "./columns";
 
 export default async function Products() {
   const { products } = await getProducts();
@@ -12,7 +13,7 @@ export default async function Products() {
         <NewProductModal emptyState />
       </div>
       <div className="w-full overflow-auto">
-        <ProductList products={products} />
+        <DataTable columns={columns} data={products} filterColumn="name" />
       </div>
     </main>
   );

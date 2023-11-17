@@ -32,7 +32,7 @@ export default function SubscriptionSettings({ subscriptions }: Props) {
           </AccountCardBody>
         ))}
       <AccountCardFooter description="Manage your keys.">
-        <Link href="/account/keys">
+        <Link href="account/keys">
           <Button variant="outline">Detail</Button>
         </Link>
       </AccountCardFooter>
