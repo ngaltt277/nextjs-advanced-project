@@ -30,3 +30,7 @@ export const getTopProducts = async () => {
     take: 3,
   });
 };
+
+export const getProductByName = async (name: string) => {
+  return await db.product.findMany({ where: { name: { contains: name } } });
+};
