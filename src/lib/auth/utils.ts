@@ -1,6 +1,7 @@
-import { clerkClient, useOrganizationList, useSession } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
-import { redirect, usePathname } from "next/navigation";
+import { redirect } from "next/navigation";
+import { createUser } from "../api/users/mutations";
+import { getUserById } from "../api/users/queries";
 
 export type AuthSession = {
   session: {
@@ -25,6 +26,7 @@ export const getUserAuth = async () => {
           name: `${sessionClaims?.firstName} ${sessionClaims?.lastName}`,
           email: sessionClaims?.email,
           role: (sessionClaims?.role as any).org_2Y9BAH4UE5M6DCOmO2LMagzI6Oh,
+          image: sessionClaims?.image,
         },
       },
     } as AuthSession;
@@ -35,5 +37,6 @@ export const getUserAuth = async () => {
 
 export const checkAuth: any = async () => {
   const { userId } = auth();
-  if (!userId ) redirect("/sign-in");
+
+  if (!userId) redirect("/sign-in");
 };

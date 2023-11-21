@@ -21,6 +21,14 @@ export const getSubscriptionsByUserId = async () => {
   return { subscriptions: s };
 };
 
+export const getSubscriptionsByCustomerId = async (customerId: string) => {
+  const s = await db.subscription.findMany({
+    where: { userId: customerId },
+    include: { product: true },
+  });
+  return { subscriptions: s };
+};
+
 export const getSubscriptionById = async (id: SubscriptionId) => {
   const { session } = await getUserAuth();
   const { id: subscriptionId } = subscriptionIdSchema.parse({ id });
@@ -29,4 +37,16 @@ export const getSubscriptionById = async (id: SubscriptionId) => {
     include: { product: true },
   });
   return { subscriptions: s };
+};
+
+export const getSubscriptionsByCreatedDate = async () => {
+  return await db.subscription.groupBy({
+    by: ["createdDate"],
+    _count: {
+      createdDate: true,
+    },
+    orderBy: {
+      createdDate: "asc",
+    },
+  });
 };

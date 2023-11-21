@@ -11,7 +11,12 @@ export default async function Keys() {
         <h1 className="text-lg font-medium">Keys</h1>
       </div>
       <div className="w-full overflow-auto">
-        <DataTable columns={columns} data={subscriptions} filterColumn="id" />
+        <DataTable
+          columns={columns}
+          data={subscriptions}
+          filterColumn="id"
+          hasPaginations
+        />
       </div>
     </main>
   );

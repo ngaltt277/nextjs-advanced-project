@@ -1,27 +1,34 @@
 import React from "react";
+import KeyChart from "./KeyChart";
+import { DataTable } from "@/components/table/DataTable";
+import { topCustomersColumns, topProductsColumns } from "./columns";
+import { getTopUsers } from "@/lib/api/users/queries";
+import { getTopProducts } from "@/lib/api/products/queries";
+import { getSubscriptionsByCreatedDate } from "@/lib/api/subscriptions/queries";
 
 const Admin = async () => {
+  const products = await getTopProducts();
+  const users = await getTopUsers();
+  const keys = await getSubscriptionsByCreatedDate();
+
   return (
-    <div className="flex-1 p-6">
+    <div className="p-6">
       <h1 className="text-3xl font-semibold">Welcome back!</h1>
-      <p className="mt-2 text-gray-600">
-        Here&apos;s what&apos;s been happening since your last visit.
-      </p>
       <div className="grid gap-6 mt-6 grid-cols-2">
         <div className="p-6 bg-white rounded shadow">
-          <h2 className="text-xl font-semibold">New Customers</h2>
-          <p className="mt-2 text-gray-600">
-            Looks like you have some new customers since your last visit.
-          </p>
+          <h2 className="text-xl font-semibold">Top Products</h2>
+          <div className="mt-2">
+            <DataTable columns={topProductsColumns} data={products} />
+          </div>
         </div>
         <div className="p-6 bg-white rounded shadow">
-          <h2 className="text-xl font-semibold">Revenue</h2>
-          <p className="mt-2 text-gray-600">
-            Your revenue has increased since your last visit, keep up the good
-            work!
-          </p>
+          <h2 className="text-xl font-semibold">Top Customers</h2>
+          <div className="mt-2">
+            <DataTable columns={topCustomersColumns} data={users} />
+          </div>
         </div>
       </div>
+      <KeyChart keys={keys} />
     </div>
   );
 };

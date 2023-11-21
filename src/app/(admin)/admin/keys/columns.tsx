@@ -1,27 +1,16 @@
 "use client";
+import { ClipboardCopy } from "@/components/ClipboardCopy";
 import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { CompleteSubscription } from "@/lib/db/schema/subscriptions";
-import { TriangleDownIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
-
-const renderInfoDetail = (label: string, value: any) => {
-  return (
-    <div className="grid grid-cols-3 items-center gap-4">
-      <div className="font-semibold text-sm">{label}</div>
-      <div className="col-span-2 text-sm">{value}</div>
-    </div>
-  );
-};
+import { ArrowUpDown } from "lucide-react";
+import Link from "next/link";
 
 export const columns: ColumnDef<CompleteSubscription>[] = [
   {
     accessorKey: "id",
     header: "Key",
+    cell: ({ row }) => <ClipboardCopy content={row.getValue("id")} />,
   },
   {
     accessorKey: "user",
@@ -32,27 +21,9 @@ export const columns: ColumnDef<CompleteSubscription>[] = [
       } = row.original;
 
       return (
-        <Popover>
-          <PopoverTrigger className="flex items-center gap-2">
-            {firstName + " " + lastName}
-            <Button variant="ghost" size="sm" className="rounded-full">
-              <TriangleDownIcon />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto">
-            <div className="grid gap-4">
-              <div className="space-y-2">
-                <h4 className="font-medium leading-none">Customer</h4>
-                <hr />
-              </div>
-              <div className="grid gap-2">
-                {renderInfoDetail("ID", id)}
-                {renderInfoDetail("First Name", firstName)}
-                {renderInfoDetail("Last Name", lastName)}
-              </div>
-            </div>
-          </PopoverContent>
-        </Popover>
+        <Link href={`customers/${id}`}>
+          <Button variant="link">{firstName + " " + lastName}</Button>
+        </Link>
       );
     },
   },
@@ -61,30 +32,12 @@ export const columns: ColumnDef<CompleteSubscription>[] = [
     header: "Product Name",
     cell: ({ row }) => {
       const {
-        product: { name, price, description },
+        product: { id, name },
       } = row.original;
       return (
-        <Popover>
-          <PopoverTrigger className="flex items-center gap-2">
-            {name}
-            <Button variant="ghost" size="sm" className="rounded-full">
-              <TriangleDownIcon />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto">
-            <div className="grid gap-4">
-              <div className="space-y-2">
-                <h4 className="font-medium leading-none">Product</h4>
-                <hr />
-              </div>
-              <div className="grid gap-2">
-                {renderInfoDetail("Name", name)}
-                {renderInfoDetail("Price", price)}
-                {renderInfoDetail("Description", description)}
-              </div>
-            </div>
-          </PopoverContent>
-        </Popover>
+        <Link href={`products/${id}`}>
+          <Button variant="link">{name}</Button>
+        </Link>
       );
     },
   },
@@ -97,5 +50,34 @@ export const columns: ColumnDef<CompleteSubscription>[] = [
     accessorKey: "expiredDate",
     header: "Expired Date",
     cell: ({ row }) => row.original.expiredDate?.toLocaleDateString("en-us"),
+  },
+  {
+    id: "status",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const expiredDate = row.original.expiredDate?.getTime();
+      if (expiredDate && expiredDate < new Date().getTime()) {
+        return (
+          <span className="px-2 py-1 bg-red-200 text-red-800 rounded-md">
+            Expired
+          </span>
+        );
+      }
+      return (
+        <span className="px-2 py-1 bg-green-200 text-green-800 rounded-md">
+          Using
+        </span>
+      );
+    },
   },
 ];

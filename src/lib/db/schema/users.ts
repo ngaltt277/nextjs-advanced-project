@@ -5,9 +5,7 @@ import { getUsers } from "@/lib/api/users/queries";
 // Schema for Users - used to validate API requests
 export const insertUserSchema = userSchema.omit({ id: true });
 
-export const insertUserParams = userSchema.extend({}).omit({
-  id: true,
-});
+export const insertUserParams = userSchema.extend({});
 
 export const updateUserSchema = userSchema;
 

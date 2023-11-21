@@ -13,7 +13,12 @@ export default async function Products() {
         <NewProductModal emptyState />
       </div>
       <div className="w-full overflow-auto">
-        <DataTable columns={columns} data={products} filterColumn="name" />
+        <DataTable
+          columns={columns}
+          data={products}
+          filterColumn="name"
+          hasPaginations
+        />
       </div>
     </main>
   );

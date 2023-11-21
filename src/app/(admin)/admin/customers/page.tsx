@@ -11,7 +11,12 @@ export default async function Customers() {
         <h1 className="text-lg font-medium">Customers</h1>
       </div>
       <div className="w-full overflow-auto">
-        <DataTable columns={columns} data={users} filterColumn="firstName" />
+        <DataTable
+          columns={columns}
+          data={users}
+          filterColumn="firstName"
+          hasPaginations
+        />
       </div>
     </main>
   );

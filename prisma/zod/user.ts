@@ -6,6 +6,9 @@ export const userSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   role: z.string(),
+  imageUrl: z.string().nullish(),
+  email: z.string(),
+  phoneNumber: z.string().nullish(),
 })
 
 export interface CompleteUser extends z.infer<typeof userSchema> {
