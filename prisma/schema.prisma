@@ -37,6 +37,13 @@ model Product {
   description   String
   price         Int
   subscriptions Subscription[]
+  features      Feature[]
+}
+
+model Feature {
+  id       String    @id @default(cuid())
+  name     String
+  products Product[]
 }
 
 model Subscription {

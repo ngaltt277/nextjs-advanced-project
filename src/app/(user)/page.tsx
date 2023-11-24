@@ -1,27 +1,10 @@
-import ProductCard from "@/components/products/ProductCard";
-import { Input } from "@/components/ui/input";
-import { getProductByName, getProducts } from "@/lib/api/products/queries";
+import { getProducts } from "@/lib/api/products/queries";
 import { getSubscriptionsByUserId } from "@/lib/api/subscriptions/queries";
+import Home from "./Home";
 
 export default async function UserHome() {
-  const products = await getProductByName("tweet");
+  const { products } = await getProducts();
   const { subscriptions } = await getSubscriptionsByUserId();
 
-  return (
-    <div className="space-y-6 mb-8">
-      <div className="flex justify-between items-center">
-        <h3 className="text-lg font-bold text-muted-foreground">Products</h3>
-        <Input placeholder="Search..." className="w-1/3" />
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 my-4">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            subscriptions={subscriptions}
-          />
-        ))}
-      </div>
-    </div>
-  );
+  return <Home products={products} subscriptions={subscriptions} />;
 }

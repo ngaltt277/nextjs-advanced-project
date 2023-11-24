@@ -15,9 +15,14 @@ export default async function RootLayout({ children }: Props) {
   await checkAuth();
 
   return (
-    <div className="max-w-3xl mx-auto md:p-0 p-6">
+    <div className="flex flex-col w-full h-[100vh]">
       <Navbar />
-      {children}
+      <div className="max-w-4xl min-w-[869px] mx-auto md:p-0 p-6 my-8 flex-1">
+        {children}
+      </div>
+      <footer className="bg-slate-800 text-white text-center py-8 w-full">
+        Copyright © 2023. All rights reserved.
+      </footer>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+import { formatDate } from "@/utils/dateUtils";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -38,7 +39,7 @@ export default function KeyChart({ keys }: Props) {
   };
 
   const data = {
-    labels: keys.map((key: any) => key.createdDate.toLocaleDateString("en-us")),
+    labels: keys.map((key: any) => formatDate(key.createdDate)),
     datasets: [
       {
         label: "Num of keys",

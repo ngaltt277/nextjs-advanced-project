@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,14 +9,18 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
+import { Feature } from "@/lib/db/schema/features";
+import { CompleteProduct } from "@/lib/db/schema/products";
 import { Subscription } from "@/lib/db/schema/subscriptions";
 import { trpc } from "@/lib/trpc/client";
-import addYears from "@/utils/dateUtils";
-import { Product } from "@prisma/client";
+import { addYears } from "@/utils/dateUtils";
+import classNames from "classnames";
+import { CheckCircleIcon } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 type Props = {
-  product: Product;
+  product: CompleteProduct;
   subscriptions: Subscription[];
 };
 
@@ -26,9 +29,13 @@ export default function ProductCard({ product, subscriptions }: Props) {
   const utils = trpc.useContext();
   const router = useRouter();
 
-  const isSubscribed = subscriptions?.some(
+  const subscription = subscriptions.findLast(
     (subscription) => subscription.productId === product?.id
   );
+
+  const isSubscribed =
+    subscription?.expiredDate &&
+    subscription.expiredDate.getTime() > new Date().getTime();
 
   const onSuccess = async (action: "create" | "delete") => {
     await utils.subscriptions.getSubscriptionsByUserId.invalidate();
@@ -36,7 +43,7 @@ export default function ProductCard({ product, subscriptions }: Props) {
     toast({
       title: "Success",
       description: `${
-        action === "delete" ? "Unsubscribe" : "Subcribe"
+        action === "delete" ? "Unsubscribe" : "Subscribe"
       } product successfully!`,
       variant: "default",
     });
@@ -54,9 +61,6 @@ export default function ProductCard({ product, subscriptions }: Props) {
 
   const onClick = (productId: string) => {
     if (isSubscribed) {
-      const subscription = subscriptions.find(
-        (subscription) => subscription.productId === productId
-      );
       deleteSubscription({ id: subscription?.id || "" });
     } else {
       const newScription = {
@@ -71,29 +75,46 @@ export default function ProductCard({ product, subscriptions }: Props) {
 
   const renderButtonLabel = () => {
     if (isSubscribing) return "Subscribing";
-    if (isSubscribed) return "Unsubscribe";
+    if (isSubscribed) return "Unsubscribed";
     if (isUnsubcribing) return "Unsubscribing";
     return "Subscribe";
   };
 
   return (
-    <Card className={isSubscribed ? "border-primary" : ""}>
+    <Card
+      className={classNames("flex flex-col", {
+        "border-green-600": isSubscribed,
+        "dark:border-white": isSubscribed,
+      })}
+    >
       {isSubscribed && (
         <div className="w-full relative">
-          <div className="text-center px-3 py-1 bg-secondary-foreground text-secondary text-xs  w-fit rounded-l-lg rounded-t-none absolute right-0 font-semibold">
+          <div className="text-center px-3 py-1 bg-green-600 text-white text-xs  w-fit rounded-lg rounded-br-none rounded-tl-none absolute right-0 font-semibold">
             Subscribed
           </div>
         </div>
       )}
       <CardHeader className="mt-2">
-        <CardTitle>{product.name}</CardTitle>
+        <CardTitle>
+          <Link href={`/${product.id}`}>
+            <Button variant="link" className="text-lg p-0">
+              {product.name}
+            </Button>
+          </Link>
+        </CardTitle>
         <CardDescription>{product.description}</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-1">
         <div className="mt-2 mb-8">
           <h3 className="font-bold">
             <span className="text-3xl">${product.price / 100}</span> / year
           </h3>
+          {product.features.slice(0, 3).map((feature: Feature) => (
+            <div className="mt-4 flex gap-2" key={feature.id}>
+              <CheckCircleIcon className="text-green-600" />
+              <span className="text-base">{feature.name}</span>
+            </div>
+          ))}
         </div>
       </CardContent>
       <CardFooter className="flex items-end justify-center">

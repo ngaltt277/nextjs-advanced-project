@@ -1,19 +1,35 @@
-import { getProductById, getProducts } from "@/lib/api/products/queries";
+import {
+  getProductById,
+  getProductByName,
+  getProducts,
+} from "@/lib/api/products/queries";
 import { publicProcedure, router } from "@/lib/server/trpc";
 import {
   productIdSchema,
   insertProductParams,
   updateProductParams,
+  productNameSchema,
 } from "@/lib/db/schema/products";
-import { createProduct, deleteProduct, updateProduct } from "@/lib/api/products/mutations";
+import {
+  createProduct,
+  deleteProduct,
+  updateProduct,
+} from "@/lib/api/products/mutations";
 
 export const productsRouter = router({
   getProducts: publicProcedure.query(async () => {
     return getProducts();
   }),
-  getProductById: publicProcedure.input(productIdSchema).query(async ({ input }) => {
-    return getProductById(input.id);
-  }),
+  getProductById: publicProcedure
+    .input(productIdSchema)
+    .query(async ({ input }) => {
+      return getProductById(input.id);
+    }),
+  getProductByName: publicProcedure
+    .input(productNameSchema)
+    .query(async ({ input }) => {
+      return getProductByName(input.name);
+    }),
   createProduct: publicProcedure
     .input(insertProductParams)
     .mutation(async ({ input }) => {

@@ -1,8 +1,8 @@
 "use client";
 
 import {
-  Product,
   NewProductParams,
+  CompleteProduct,
   insertProductParams,
 } from "@/lib/db/schema/products";
 import { useForm } from "react-hook-form";
@@ -21,13 +21,16 @@ import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import { FeaturesMultiSelect } from "../features/FeaturesMultiSelect";
+import { Feature } from "@/lib/db/schema/features";
 
 type Props = {
-  product?: Product;
+  product: CompleteProduct;
+  features: Feature[];
   closeModal: () => void;
 };
 
-const ProductForm = ({ product, closeModal }: Props) => {
+const ProductForm = ({ product, features, closeModal }: Props) => {
   const { toast } = useToast();
   const router = useRouter();
   const utils = trpc.useContext();
@@ -43,6 +46,7 @@ const ProductForm = ({ product, closeModal }: Props) => {
       name: "",
       price: 0,
       description: "",
+      features: [] as Feature[],
     },
   });
 
@@ -133,6 +137,19 @@ const ProductForm = ({ product, closeModal }: Props) => {
                 <Input {...field} />
               </FormControl>
 
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="features"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Features</FormLabel>
+              <FormControl>
+                <FeaturesMultiSelect features={features} field={field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

@@ -7,12 +7,12 @@ export default async function Products() {
   const { products } = await getProducts();
 
   return (
-    <main className="flex-grow p-6">
+    <main className="flex-grow px-6 mb-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-lg font-medium">Products</h1>
         <NewProductModal emptyState />
       </div>
-      <div className="w-full overflow-auto">
+      <div className="w-full">
         <DataTable
           columns={columns}
           data={products}

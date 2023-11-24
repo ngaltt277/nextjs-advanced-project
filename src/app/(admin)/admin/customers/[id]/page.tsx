@@ -1,10 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  getSubscriptionsByCustomerId
-} from "@/lib/api/subscriptions/queries";
+import { getSubscriptionsByCustomerId } from "@/lib/api/subscriptions/queries";
 import { getUserById } from "@/lib/api/users/queries";
 import Link from "next/link";
-import KeyCard from "./KeyCard";
+import KeyCard from "@/./components/KeyCard";
 import { ChevronRightIcon } from "lucide-react";
 
 type Props = {
@@ -34,7 +32,7 @@ export default async function CustomerDetail({ params }: Props) {
   };
 
   return (
-    <main className="flex-grow p-6">
+    <main className="flex-grow px-6 mb-6">
       <div className="flex gap-2 items-center mb-4">
         <Link
           href="/admin/customers"

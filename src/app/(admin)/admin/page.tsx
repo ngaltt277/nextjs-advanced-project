@@ -12,16 +12,16 @@ const Admin = async () => {
   const keys = await getSubscriptionsByCreatedDate();
 
   return (
-    <div className="p-6">
+    <div className="px-6 mb-6">
       <h1 className="text-3xl font-semibold">Welcome back!</h1>
       <div className="grid gap-6 mt-6 grid-cols-2">
-        <div className="p-6 bg-white rounded shadow">
+        <div className="p-6 bg-white rounded shadow dark:bg-slate-800">
           <h2 className="text-xl font-semibold">Top Products</h2>
           <div className="mt-2">
             <DataTable columns={topProductsColumns} data={products} />
           </div>
         </div>
-        <div className="p-6 bg-white rounded shadow">
+        <div className="p-6 bg-white rounded shadow dark:bg-slate-800">
           <h2 className="text-xl font-semibold">Top Customers</h2>
           <div className="mt-2">
             <DataTable columns={topCustomersColumns} data={users} />

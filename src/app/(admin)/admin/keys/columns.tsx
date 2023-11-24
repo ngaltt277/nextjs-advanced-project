@@ -2,6 +2,7 @@
 import { ClipboardCopy } from "@/components/ClipboardCopy";
 import { Button } from "@/components/ui/button";
 import { CompleteSubscription } from "@/lib/db/schema/subscriptions";
+import { formatDate } from "@/utils/dateUtils";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import Link from "next/link";
@@ -44,26 +45,28 @@ export const columns: ColumnDef<CompleteSubscription>[] = [
   {
     accessorKey: "createdDate",
     header: "Subcribed Date",
-    cell: ({ row }) => row.original.createdDate?.toLocaleDateString("en-us"),
+    cell: ({ row }) => formatDate(row.original.createdDate),
   },
   {
     accessorKey: "expiredDate",
-    header: "Expired Date",
-    cell: ({ row }) => row.original.expiredDate?.toLocaleDateString("en-us"),
-  },
-  {
-    id: "status",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Status
+          Expired Date
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
+    cell: ({ row }) => (
+      <div className="text-center">{formatDate(row.original.expiredDate)}</div>
+    ),
+  },
+  {
+    id: "status",
+    header: "Status",
     cell: ({ row }) => {
       const expiredDate = row.original.expiredDate?.getTime();
       if (expiredDate && expiredDate < new Date().getTime()) {

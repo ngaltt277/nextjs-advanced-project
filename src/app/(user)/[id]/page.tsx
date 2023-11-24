@@ -5,10 +5,8 @@ type Props = {
   params: { id: string };
 };
 
-export default async function AdminProductDetail({ params }: Props) {
+export default async function UserProductDetail({ params }: Props) {
   const { product } = await getProductById(params.id);
 
-  return (
-    <ProductDetail product={product} />
-  );
+  return <ProductDetail product={product} />;
 }

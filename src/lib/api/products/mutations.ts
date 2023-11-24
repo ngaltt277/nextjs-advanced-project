@@ -1,17 +1,24 @@
 import { db } from "@/lib/db/index";
-import { 
-  ProductId, 
+import {
+  ProductId,
   NewProductParams,
-  UpdateProductParams, 
+  UpdateProductParams,
   updateProductSchema,
-  insertProductSchema, 
-  productIdSchema 
+  insertProductSchema,
+  productIdSchema,
 } from "@/lib/db/schema/products";
 
 export const createProduct = async (product: NewProductParams) => {
   const newProduct = insertProductSchema.parse(product);
   try {
-    const p = await db.product.create({ data: newProduct });
+    const p = await db.product.create({
+      data: {
+        name: newProduct.name,
+        price: newProduct.price,
+        description: newProduct.description,
+        features: { connect: newProduct.features },
+      },
+    });
     return { product: p };
   } catch (err) {
     const message = (err as Error).message ?? "Error, please try again";
@@ -20,11 +27,23 @@ export const createProduct = async (product: NewProductParams) => {
   }
 };
 
-export const updateProduct = async (id: ProductId, product: UpdateProductParams) => {
+export const updateProduct = async (
+  id: ProductId,
+  product: UpdateProductParams
+) => {
   const { id: productId } = productIdSchema.parse({ id });
   const newProduct = updateProductSchema.parse(product);
   try {
-    const p = await db.product.update({ where: { id: productId }, data: newProduct})
+    const p = await db.product.update({
+      where: { id: productId },
+      data: {
+        id: newProduct.id,
+        name: newProduct.name,
+        price: newProduct.price,
+        description: newProduct.description,
+        features: { set: [], connect: newProduct.features },
+      },
+    });
     return { product: p };
   } catch (err) {
     const message = (err as Error).message ?? "Error, please try again";
@@ -36,7 +55,7 @@ export const updateProduct = async (id: ProductId, product: UpdateProductParams)
 export const deleteProduct = async (id: ProductId) => {
   const { id: productId } = productIdSchema.parse({ id });
   try {
-    const p = await db.product.delete({ where: { id: productId }})
+    const p = await db.product.delete({ where: { id: productId } });
     return { product: p };
   } catch (err) {
     const message = (err as Error).message ?? "Error, please try again";
@@ -44,4 +63,3 @@ export const deleteProduct = async (id: ProductId) => {
     return { error: message };
   }
 };
-

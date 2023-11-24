@@ -1,9 +1,9 @@
 "use client";
 import ProductModal from "@/components/products/ProductModal";
-import { Product } from "@/lib/db/schema/products";
+import { CompleteProduct } from "@/lib/db/schema/products";
 import { ColumnDef } from "@tanstack/react-table";
 
-export const columns: ColumnDef<Product>[] = [
+export const columns: ColumnDef<CompleteProduct>[] = [
   {
     accessorKey: "name",
     header: "Name",
@@ -17,10 +17,12 @@ export const columns: ColumnDef<Product>[] = [
     header: "Description",
   },
   {
+    accessorKey: "features",
+    header: "Num of Features",
+    cell: ({ row }) => row.original.features.length,
+  },
+  {
     id: "action",
-    cell: ({ row }) => {
-      const product = row.original;
-      return <ProductModal product={product} />;
-    },
+    cell: ({ row }) => <ProductModal product={row.original} />,
   },
 ];

@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { formatDate } from "@/utils/dateUtils";
 import { CaretRightIcon } from "@radix-ui/react-icons";
 
 type Props = {
@@ -33,31 +34,36 @@ export default function KeyCard({ subscription }: Props) {
     );
   };
 
+  const renderCardDescription = () => {
+    if (isExpired) {
+      return `Your key was expired in ${formatDate(expiredDate)}`;
+    }
+    return `Your key will be expired in ${formatDate(expiredDate)}`;
+  };
+
   return (
     <Card className={isExpired ? "border-red-800" : "border-green-800"}>
       <CardHeader>
         <CardTitle className="text-lg">{id}</CardTitle>
-        <CardDescription>
-          Your key will be expired in {expiredDate?.toLocaleDateString("en-us")}
-        </CardDescription>
+        <CardDescription>{renderCardDescription()}</CardDescription>
         <CardContent className="m-0 p-0">
           <p className="flex gap-4 items-center">
             <CaretRightIcon />
-            <div className="flex w-full">
+            <div className="flex w-full text-sm gap-2">
               <p className="w-1/3">Product Name:</p>
               <strong>{product.name}</strong>
             </div>
           </p>
           <p className="flex gap-4 items-center">
             <CaretRightIcon />
-            <div className="flex w-full">
+            <div className="flex w-full text-sm gap-2">
               <p className="w-1/3">Descripion:</p>
               <strong>{product.description}</strong>
             </div>
           </p>
           <p className="flex gap-4 items-center">
             <CaretRightIcon />
-            <div className="flex w-full">
+            <div className="flex w-full text-sm gap-2">
               <p className="w-1/3">Price:</p>
               <strong>${product.price / 100} / year</strong>
             </div>

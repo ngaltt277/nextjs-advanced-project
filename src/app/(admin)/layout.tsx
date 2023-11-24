@@ -24,7 +24,7 @@ export default async function RootLayout({ children }: Props) {
     <div className="flex">
       <Aside />
       <main className="flex-grow px-3">
-        <div className="flex justify-end mb-4 sticky top-0 py-3 bg-white w-full z-50">
+        <div className="flex justify-end sticky top-0 py-3 bg-white w-full z-50 dark:bg-black">
           <div className="flex items-center gap-2">
             <ModeToggle />
             <UserButton afterSignOutUrl="/" />
