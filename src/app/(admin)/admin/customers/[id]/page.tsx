@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getSubscriptionsByCustomerId } from "@/lib/api/subscriptions/queries";
 import { getUserById } from "@/lib/api/users/queries";
 import Link from "next/link";
-import KeyCard from "@/./components/KeyCard";
+import KeyCard from "@/components/KeyCard";
 import { ChevronRightIcon } from "lucide-react";
 
 type Props = {

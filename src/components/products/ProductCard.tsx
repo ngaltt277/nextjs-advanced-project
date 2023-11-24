@@ -13,7 +13,7 @@ import { Feature } from "@/lib/db/schema/features";
 import { CompleteProduct } from "@/lib/db/schema/products";
 import { Subscription } from "@/lib/db/schema/subscriptions";
 import { trpc } from "@/lib/trpc/client";
-import { addYears } from "@/utils/dateUtils";
+import { addYears } from "@/utils/date";
 import classNames from "classnames";
 import { CheckCircleIcon } from "lucide-react";
 import Link from "next/link";

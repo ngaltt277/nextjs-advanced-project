@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { formatDate } from "@/utils/dateUtils";
+import { formatDate } from "@/utils/date";
 import { CaretRightIcon } from "@radix-ui/react-icons";
 
 type Props = {

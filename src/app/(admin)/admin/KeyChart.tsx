@@ -1,5 +1,5 @@
 "use client";
-import { formatDate } from "@/utils/dateUtils";
+import { formatDate } from "@/utils/date";
 import {
   Chart as ChartJS,
   CategoryScale,

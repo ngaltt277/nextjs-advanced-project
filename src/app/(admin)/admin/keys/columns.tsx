@@ -2,7 +2,7 @@
 import { ClipboardCopy } from "@/components/ClipboardCopy";
 import { Button } from "@/components/ui/button";
 import { CompleteSubscription } from "@/lib/db/schema/subscriptions";
-import { formatDate } from "@/utils/dateUtils";
+import { formatDate } from "@/utils/date";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import Link from "next/link";
