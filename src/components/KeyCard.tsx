@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { formatDate } from "@/utils/date";
 import { CaretRightIcon } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 
 type Props = {
   subscription: any;
@@ -15,6 +16,8 @@ type Props = {
 
 export default function KeyCard({ subscription }: Props) {
   const { id, expiredDate, product } = subscription;
+  const tKey = useTranslations("Key");
+  const tProduct = useTranslations("Product");
 
   const isExpired =
     expiredDate?.getTime() && expiredDate?.getTime() < new Date().getTime();
@@ -23,22 +26,22 @@ export default function KeyCard({ subscription }: Props) {
     if (isExpired) {
       return (
         <span className="px-2 py-1 bg-red-200 text-red-800 rounded-md">
-          Expired
+          {tKey("expired")}
         </span>
       );
     }
     return (
       <span className="px-2 py-1 bg-green-200 text-green-800 rounded-md">
-        Using
+        {tKey("using")}
       </span>
     );
   };
 
   const renderCardDescription = () => {
     if (isExpired) {
-      return `Your key was expired in ${formatDate(expiredDate)}`;
+      return `${tKey("expired-desc")} ${formatDate(expiredDate)}`;
     }
-    return `Your key will be expired in ${formatDate(expiredDate)}`;
+    return `${tKey("using-desc")} ${formatDate(expiredDate)}`;
   };
 
   return (
@@ -50,22 +53,24 @@ export default function KeyCard({ subscription }: Props) {
           <p className="flex gap-4 items-center">
             <CaretRightIcon />
             <div className="flex w-full text-sm gap-2">
-              <p className="w-1/3">Product Name:</p>
+              <p className="w-1/3">{tProduct("name")}:</p>
               <strong>{product.name}</strong>
             </div>
           </p>
           <p className="flex gap-4 items-center">
             <CaretRightIcon />
             <div className="flex w-full text-sm gap-2">
-              <p className="w-1/3">Descripion:</p>
+              <p className="w-1/3">{tProduct("description")}:</p>
               <strong>{product.description}</strong>
             </div>
           </p>
           <p className="flex gap-4 items-center">
             <CaretRightIcon />
             <div className="flex w-full text-sm gap-2">
-              <p className="w-1/3">Price:</p>
-              <strong>${product.price / 100} / year</strong>
+              <p className="w-1/3">{tProduct("price")}:</p>
+              <strong>
+                ${product.price / 100} / {tProduct("year")}
+              </strong>
             </div>
           </p>
         </CardContent>

@@ -1,0 +1,118 @@
+{
+  "AccountAndBilling": {
+    "label": "Account and Billing"
+  },
+  "Theme": {
+    "label": "Toggle theme",
+    "theme": "{theme, select, dark {Dark} light {Light} system {System} other {Unknown}}"
+  },
+  "Locale": {
+    "label": "Toggle language",
+    "locale": "{locale, select, vi {Vietnamese} en {English} other {Unknown}}"
+  },
+  "Product": {
+    "title": "Products",
+    "search": "Search",
+    "subscribed": "Subscribed",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing",
+    "unsubscribe": "Unsubscribe",
+    "unsubscribing": "Unsubscribing",
+    "year": "year",
+    "no-results": "No results",
+    "success": "Success",
+    "message": "product successfully!",
+    "information": "Information",
+    "name": "Name",
+    "description": "Description",
+    "price": "Price",
+    "numOfKeys": "Num of keys",
+    "features": "Features",
+    "numOfFeatures": "Num of features",
+    "selectFeatures": "Select features",
+    "add": "New Product",
+    "edit": "Edit",
+    "update": "Update",
+    "create": "Create",
+    "delete": "Delete",
+    "deleting": "Deleting",
+    "updating": "Updating",
+    "creating": "Creating",
+    "success-message": "Product {action, select, create {created} edit {edited} delete {deleted} other {not known}}!"
+  },
+  "Account": {
+    "label": "Account",
+    "keys": {
+      "title": "Your Keys",
+      "description": "You are subscribed {num} keys",
+      "empty": "You are not subscribed to any keys",
+      "more-info": "Manage your key",
+      "detail": "Detail"
+    },
+    "name": {
+      "title": "Your Name",
+      "description": "Please enter your full name, or a display name you are comfortable with.",
+      "more-info": "64 characters maximum",
+      "update": "Update Name",
+      "error": "Name must be longer than 3 characters.",
+      "success":"Successfully updated name!"
+    },
+    "email": {
+      "title": "Your Email",
+      "description": "Please enter the email address you want to use with your account.",
+      "more-info": "We will email vou to verify the change.",
+      "update": "Update Email",
+      "error": "Email must be longer than 3 characters.",
+      "success": "Successfully updated email!"
+    }
+  },
+  "Footer": {
+    "label": "Copyright © 2023. All rights reserved."
+  },
+  "Key": {
+    "back": "Back",
+    "title": "Key Detail",
+    "empty": "No keys",
+    "using": "Using",
+    "expired": "Expired",
+    "expired-desc": "Your key was expired in",
+    "using-desc": "Your key will be expired in",
+    "customerName": "Customer Name",
+    "productName": "Product Name",
+    "subscribeDate": "Subscribed Date",
+    "expiredDate": "Expired Date"
+  },
+  "Aside": {
+    "dashboard": "Dashboard",
+    "home": "Home",
+    "product": "Product",
+    "feature": "Feature",
+    "customer": "Customer",
+    "key": "Keys"
+  },
+  "Home": {
+    "welcome": "Welcome back!",
+    "top-product": "Top Product",
+    "top-customer": "Top Customer"
+  },
+  "Customer": {
+    "title": "Customers",
+    "name": "Name",
+    "numOfKeys": "Num of keys",
+    "id": "Customer ID",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "detail": "Detail",
+    "profile": "Profile",
+    "phoneNumber": "Phone Number",
+    "none": "none"
+  },
+  "Chart": {
+    "title": "Num of keys created each days",
+    "label": "Num of keys"
+  },
+  "Features": {
+    "title": "Features",
+    "name": "Name"
+  }
+}

@@ -1,4 +1,5 @@
 "use client";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
@@ -13,6 +14,7 @@ enum PathnameEnum {
 
 export default function Aside() {
   const pathname = usePathname();
+  const t = useTranslations("Aside");
 
   const getClassName = (value: string) => {
     return `w-full flex items-center space-x-2 ${
@@ -25,7 +27,7 @@ export default function Aside() {
   const items = useMemo(
     () => [
       {
-        label: "Home",
+        label: t("home"),
         path: PathnameEnum.Admin,
         icon: (
           <svg
@@ -46,7 +48,7 @@ export default function Aside() {
         ),
       },
       {
-        label: "Products",
+        label: t("product"),
         path: PathnameEnum.Products,
         icon: (
           <svg
@@ -68,7 +70,7 @@ export default function Aside() {
         ),
       },
       {
-        label: "Features",
+        label: t("feature"),
         path: PathnameEnum.Features,
         icon: (
           <svg
@@ -90,7 +92,7 @@ export default function Aside() {
         ),
       },
       {
-        label: "Customers",
+        label: t("customer"),
         path: PathnameEnum.Customers,
         icon: (
           <svg
@@ -113,7 +115,7 @@ export default function Aside() {
         ),
       },
       {
-        label: "Keys",
+        label: t("key"),
         path: PathnameEnum.Keys,
         icon: (
           <svg
@@ -136,13 +138,14 @@ export default function Aside() {
         ),
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
   return (
     <aside className="sticky top-0 h-screen w-56 bg-gray-100 text-gray-800 p-4 dark:bg-gray-800 dark:text-white">
       <div className="flex items-center mb-4 space-x-1">
-        <h1 className="text-2xl mb-4">Dashboard</h1>
+        <h1 className="text-2xl mb-4">{t("dashboard")}</h1>
       </div>
       <nav className="space-y-2">
         {items.map((item) => (

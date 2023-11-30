@@ -1,5 +1,6 @@
 import { CompleteProduct } from "@/lib/db/schema/products";
 import { CheckCircleIcon, ChevronRightIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 type Props = {
@@ -7,6 +8,8 @@ type Props = {
 };
 
 export default function ProductDetail({ product }: Props) {
+  const t = useTranslations("Product");
+
   const renderProductInfo = (label: string, value: any) => {
     return (
       <div className="flex mb-4 gap-4">
@@ -23,7 +26,7 @@ export default function ProductDetail({ product }: Props) {
           href="/admin/products"
           className="text-lg font-medium text-stone-500 hover:underline"
         >
-          Products
+          {t("title")}
         </Link>
         <ChevronRightIcon />
         <h1 className="text-lg font-medium flex gap-4 items-center">
@@ -32,24 +35,26 @@ export default function ProductDetail({ product }: Props) {
       </div>
       <div className="w-full">
         <div className="flex items-center gap-4 my-4">
-          <h2 className="text-lg font-medium text-green-600">Information</h2>
+          <h2 className="text-lg font-medium text-green-600">
+            {t("information")}
+          </h2>
           <div className="bg-border h-[1px] flex-1"></div>
         </div>
         <div className="flex px-4">
           <div className="flex-auto">
-            {renderProductInfo("Name", product?.name)}
-            {renderProductInfo("Description", product?.description)}
+            {renderProductInfo(t("name"), product?.name)}
+            {renderProductInfo(t("description"), product?.description)}
           </div>
           <div className="flex-auto">
             {renderProductInfo(
-              "Price",
+              t("price"),
               `$${product?.price && product?.price / 100}`
             )}
-            {renderProductInfo("Num of keys", product?.subscriptions.length)}
+            {renderProductInfo(t("numOfKeys"), product?.subscriptions.length)}
           </div>
         </div>
         <div className="flex items-center gap-4 my-4">
-          <h2 className="text-lg font-medium text-green-600">Features</h2>
+          <h2 className="text-lg font-medium text-green-600">{t("features")}</h2>
           <div className="bg-border h-[1px] flex-1"></div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 my-4 px-4">

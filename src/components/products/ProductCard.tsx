@@ -16,6 +16,7 @@ import { trpc } from "@/lib/trpc/client";
 import { addYears } from "@/utils/date";
 import classNames from "classnames";
 import { CheckCircleIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -28,10 +29,11 @@ export default function ProductCard({ product, subscriptions }: Props) {
   const { toast } = useToast();
   const utils = trpc.useContext();
   const router = useRouter();
+  const t = useTranslations("Product");
 
-  const subscription = subscriptions.findLast(
+  const subscription = subscriptions.filter(
     (subscription) => subscription.productId === product?.id
-  );
+  ).at(-1);
 
   const isSubscribed =
     subscription?.expiredDate &&
@@ -41,10 +43,10 @@ export default function ProductCard({ product, subscriptions }: Props) {
     await utils.subscriptions.getSubscriptionsByUserId.invalidate();
     router.refresh();
     toast({
-      title: "Success",
+      title: t("success"),
       description: `${
-        action === "delete" ? "Unsubscribe" : "Subscribe"
-      } product successfully!`,
+        action === "delete" ? t("unsubscribe") : t("subscribe")
+      } ${t("message")}`,
       variant: "default",
     });
   };
@@ -74,10 +76,10 @@ export default function ProductCard({ product, subscriptions }: Props) {
   };
 
   const renderButtonLabel = () => {
-    if (isSubscribing) return "Subscribing";
-    if (isSubscribed) return "Unsubscribed";
-    if (isUnsubcribing) return "Unsubscribing";
-    return "Subscribe";
+    if (isSubscribing) return t("subscribing");
+    if (isSubscribed) return t("unsubscribe");
+    if (isUnsubcribing) return t("unsubscribing");
+    return t("subscribe");
   };
 
   return (
@@ -90,7 +92,7 @@ export default function ProductCard({ product, subscriptions }: Props) {
       {isSubscribed && (
         <div className="w-full relative">
           <div className="text-center px-3 py-1 bg-green-600 text-white text-xs  w-fit rounded-lg rounded-br-none rounded-tl-none absolute right-0 font-semibold">
-            Subscribed
+            {t("subscribed")}
           </div>
         </div>
       )}
@@ -107,7 +109,8 @@ export default function ProductCard({ product, subscriptions }: Props) {
       <CardContent className="flex-1">
         <div className="mt-2 mb-8">
           <h3 className="font-bold">
-            <span className="text-3xl">${product.price / 100}</span> / year
+            <span className="text-3xl">${product.price / 100}</span> / 
+            {t("year")}
           </h3>
           {product.features.slice(0, 3).map((feature: Feature) => (
             <div className="mt-4 flex gap-2" key={feature.id}>

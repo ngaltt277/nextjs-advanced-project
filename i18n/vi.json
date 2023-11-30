@@ -1,0 +1,125 @@
+{
+  "AccountAndBilling": {
+    "label": "Tài khoản và thanh toán"
+  },
+  "Theme": {
+    "label": "Đổi chủ đề",
+    "theme": "{theme, select, dark {Tối} light {Sáng} system {Hệ thống} other {Không xác định}}"
+  },
+  "Locale": {
+    "label": "Đổi ngôn ngữ",
+    "locale": "{locale, select, vi {Tiếng Việt} en {Tiếng Anh} other {Không xác định}}"
+  },
+  "Product": {
+    "title": "Danh sách sản phẩm",
+    "search": "Tìm kiếm",
+    "subscribed": "Đã đăng ký",
+    "subscribe": "Đăng ký",
+    "subscribing": "Đang đăng ký",
+    "unsubscribe": "Hủy đăng ký",
+    "unsubscribing": "Đang hủy",
+    "year": "năm",
+    "no-results": "Danh sách rỗng",
+    "success": "Thành công",
+    "message": "sản phẩm thành công!",
+    "information": "Thông tin sản phẩm",
+    "name": "Tên sản phẩm",
+    "description": "Mô tả",
+    "price": "Giá",
+    "numOfKeys": "Số lượng key",
+    "features": "Tính năng",
+    "numOfFeatures": "Số tính năng",
+    "selectFeatures": "Chọn tính năng",
+    "add": "Thêm mới",
+    "edit": "Chỉnh sửa",
+    "update": "Cập nhật",
+    "create": "Tạo mới",
+    "delete": "Xóa",
+    "deleting": "Đang xóa",
+    "updating": "Đang cập nhật",
+    "creating": "Đang tạo",
+    "success-message": "Sản phẩm {action, select, create {được thêm} edit {chỉnh sửa} delete {đã xóa} other {không xác định}} thành công"
+  },
+  "Account": {
+    "label": "Thông tin tài khoản",
+    "keys": {
+      "title": "Key của bạn",
+      "description": "Bạn đã mua {num} keys",
+      "empty": "Bạn chưa mua bất kì key nào",
+      "more-info": "Quản lý key",
+      "detail": "Chi tiết"
+    },
+    "name": {
+      "title": "Họ và tên",
+      "description": "Vui lòng nhập tên đầy đủ của bạn hoặc tên hiển thị mà bạn cảm thấy hài lòng.",
+      "more-info": "Tối đa 64 kí tự",
+      "update": "Cập nhật",
+      "error": "Tên phải chứa ít nhất 3 ký tự.",
+      "success":"Cập nhật tên thành công!"
+    },
+    "email": {
+      "title": "Địa chỉ email",
+      "description": "Vui lòng nhập địa chỉ email bạn muốn sử dụng với tài khoản của mình.",
+      "more-info": "Chúng tôi sẽ gửi email cho bạn để xác minh sự thay đổi.",
+      "update": "Cập nhật",
+      "error": "Địa chỉ email phải chứa ít nhất 3 ký tự.",
+      "success": "Cập nhật email thành công!"
+    }
+  },
+  "Footer": {
+    "label": "Bản quyền © 2023. Mọi quyền được bảo lưu."
+  },
+  "Key": {
+    "back": "Quay lại",
+    "title": "Danh sách các key",
+    "empty": "Danh sách rỗng",
+    "using": "Đang sử dụng",
+    "expired": "Hết hạn",
+    "expired-desc": "Key của bạn đã hết hạn vào ngày",
+    "using-desc": "Key của bạn sẽ hết hạn vào ngày",
+    "customerName": "Tên khách hàng",
+    "productName": "Tên sản phẩm",
+    "subscribeDate": "Ngày đăng ký",
+    "expiredDate": "Ngày hết hạn"
+  },
+  "Aside": {
+    "dashboard": "Dashboard",
+    "home": "Trang chủ",
+    "product": "Sản phẩm",
+    "feature": "Tính năng",
+    "customer": "Khách hàng",
+    "key": "Keys"
+  },
+  "Home": {
+    "welcome": "Chào mừng bạn trở lại!",
+    "top-product": "Sản phẩm bán chạy",
+    "top-customer": "Khách hàng hàng đầu"
+  },
+  "Customer": {
+    "title": "Danh sách khách hàng",
+    "name": "Họ và tên",
+    "numOfKeys": "Số lượng key",
+    "id": "Mã khách hàng",
+    "firstName": "Họ và tên đệm",
+    "lastName": "Tên",
+    "detail": "Chi tiết",
+    "profile": "Thông tin cá nhân",
+    "phoneNumber": "Số điện thoại",
+    "none": "trống"
+  },
+  "Chart": {
+    "title": "Số lượng key đăng ký trong ngày",
+    "label": "Số lượng key"
+  },
+  "Features": {
+    "title": "Danh sách tính năng",
+    "name": "Tên tính năng"
+  },
+  "Pagination": {
+    "page": "Trang {current} / {total}",
+    "firstPage": "Về lại trang đầu",
+    "previousPage": "Về lại trang trước",
+    "nextPage": "Đi đến trang tiếp theo",
+    "lastPage": "Đi đến trang cuối cùng"
+  }
+}

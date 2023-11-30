@@ -14,6 +14,7 @@ import { PlusIcon } from "lucide-react";
 import { trpc } from "@/lib/trpc/client";
 import { Feature } from "@/lib/db/schema/features";
 import FeatureModal from "../features/FeatureModal";
+import { useTranslations } from "next-intl";
 
 type Props = {
   product?: any;
@@ -27,6 +28,8 @@ export default function ProductModal({ product, emptyState }: Props) {
   const editing = !!product?.id;
   const utils = trpc.useContext();
 
+  const t = useTranslations("Product");
+
   const toggleModal = async (open: boolean) => {
     await utils.features.getFeatures.fetch().then((response) => {
       setFeatures(response.features);
@@ -39,7 +42,7 @@ export default function ProductModal({ product, emptyState }: Props) {
       return (
         <Button>
           <PlusIcon />
-          New Product
+          {t("add")}
         </Button>
       );
     }
@@ -48,7 +51,7 @@ export default function ProductModal({ product, emptyState }: Props) {
         variant={editing ? "ghost" : "outline"}
         size={editing ? "sm" : "icon"}
       >
-        {editing ? "Edit" : "+"}
+        {editing ? t("edit") : "+"}
       </Button>
     );
   };
@@ -58,7 +61,7 @@ export default function ProductModal({ product, emptyState }: Props) {
       <DialogTrigger asChild>{renderButton()}</DialogTrigger>
       <DialogContent>
         <DialogHeader className="px-5 pt-5">
-          <DialogTitle>{editing ? "Edit" : "Create"} Product</DialogTitle>
+          <DialogTitle>{editing ? t("edit") : t("add")}</DialogTitle>
         </DialogHeader>
         <div className="px-5 pb-5 relative">
           <ProductForm

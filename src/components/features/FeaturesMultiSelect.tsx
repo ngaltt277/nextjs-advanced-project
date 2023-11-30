@@ -5,6 +5,7 @@ import { Command, CommandGroup, CommandItem } from "../ui/command";
 import { Command as CommandPrimitive } from "cmdk";
 import { Feature } from "@/lib/db/schema/features";
 import { useCallback, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type Props = {
   features: Feature[];
@@ -15,6 +16,7 @@ export function FeaturesMultiSelect({ features, field }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const t = useTranslations("Product");
 
   const { value: selectedFeatures, onChange: setSelectedFeatures } = field;
   
@@ -89,7 +91,7 @@ export function FeaturesMultiSelect({ features, field }: Props) {
             onValueChange={setInputValue}
             onBlur={() => setOpen(false)}
             onFocus={() => setOpen(true)}
-            placeholder="Select features..."
+            placeholder={`${t("selectFeatures")}...`}
             className="ml-2 bg-transparent outline-none placeholder:text-muted-foreground flex-1"
           />
         </div>

@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { FeaturesMultiSelect } from "../features/FeaturesMultiSelect";
 import { Feature } from "@/lib/db/schema/features";
+import { useTranslations } from "next-intl";
 
 type Props = {
   product: CompleteProduct;
@@ -34,6 +35,7 @@ const ProductForm = ({ product, features, closeModal }: Props) => {
   const { toast } = useToast();
   const router = useRouter();
   const utils = trpc.useContext();
+  const t = useTranslations("Product");
 
   const editing = !!product?.id;
 
@@ -55,8 +57,8 @@ const ProductForm = ({ product, features, closeModal }: Props) => {
     router.refresh();
     closeModal();
     toast({
-      title: "Success",
-      description: `Product ${action}d!`,
+      title: t("success"),
+      description: t("success-message", { action }),
       variant: "default",
     });
   };
@@ -87,14 +89,14 @@ const ProductForm = ({ product, features, closeModal }: Props) => {
   const renderLabelButton = () => {
     if (editing) {
       if (isUpdating) {
-        return "Updating...";
+        return `${t("updating")}...`;
       }
-      return "Update";
+      return t("update");
     }
     if (isCreating) {
-      return "Creating...";
+      return `${t("creating")}...`;
     }
-    return "Create";
+    return t("create");
   };
 
   return (
@@ -105,7 +107,7 @@ const ProductForm = ({ product, features, closeModal }: Props) => {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>{t("name")}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -118,7 +120,7 @@ const ProductForm = ({ product, features, closeModal }: Props) => {
           name="price"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Price</FormLabel>
+              <FormLabel>{t("price")}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -132,7 +134,7 @@ const ProductForm = ({ product, features, closeModal }: Props) => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>{t("description")}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -146,7 +148,7 @@ const ProductForm = ({ product, features, closeModal }: Props) => {
           name="features"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Features</FormLabel>
+              <FormLabel>{t("features")}</FormLabel>
               <FormControl>
                 <FeaturesMultiSelect features={features} field={field} />
               </FormControl>
@@ -167,7 +169,7 @@ const ProductForm = ({ product, features, closeModal }: Props) => {
             variant={"destructive"}
             onClick={() => deleteProduct({ id: product.id })}
           >
-            {isDeleting ? "Deleting..." : "Delete"}
+            {isDeleting ? `${t("deleting")}...` : t("delete")}
           </Button>
         )}
       </form>

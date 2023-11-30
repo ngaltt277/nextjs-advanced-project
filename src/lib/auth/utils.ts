@@ -1,7 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { createUser } from "../api/users/mutations";
-import { getUserById } from "../api/users/queries";
 
 export type AuthSession = {
   session: {
