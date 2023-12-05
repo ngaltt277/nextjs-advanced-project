@@ -23,7 +23,9 @@ export default async function RootLayout({ children }: Props) {
   if (!session || session.user.role !== "admin") return redirect("/");
 
   return (
-    <ClientProvider message={["Aside", "Theme", "Locale"]}>
+    <ClientProvider
+      message={["Aside", "Theme", "Locale", "Product", "Customer", "Chart"]}
+    >
       <div className="flex">
         <Aside />
         <main className="flex-grow px-3">

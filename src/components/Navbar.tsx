@@ -2,12 +2,8 @@ import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { ModeToggle } from "@/components/ui/ThemeToggle";
 import { Button } from "./ui/button";
-import {
-  useTranslations,
-} from "next-intl";
-import pick from "lodash/pick";
+import { useTranslations } from "next-intl";
 import { LanguageToggle } from "./LanguageToggle";
-import ClientProvider from "i18n/client-provider";
 
 export default function Navbar() {
   const t = useTranslations("AccountAndBilling");
@@ -24,10 +20,8 @@ export default function Navbar() {
           </Button>
         </Link>
         <SignedIn>
-          <ClientProvider message={["Theme", "Locale"]}>
-            <ModeToggle />
-            <LanguageToggle />
-          </ClientProvider>
+          <ModeToggle />
+          <LanguageToggle />
           <UserButton afterSignOutUrl="/" />
         </SignedIn>
         <SignedOut>

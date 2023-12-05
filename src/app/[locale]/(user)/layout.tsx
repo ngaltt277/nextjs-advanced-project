@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import { checkAuth } from "@/lib/auth/utils";
 import { getTranslations } from "next-intl/server";
+import ClientProvider from "i18n/client-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,14 +18,16 @@ export default async function RootLayout({ children }: Props) {
   const t = await getTranslations("Footer");
 
   return (
-    <div className="flex flex-col w-full h-[100vh]">
-      <Navbar />
-      <div className="max-w-4xl min-w-[869px] mx-auto md:p-0 p-6 my-8 flex-1">
-        {children}
+    <ClientProvider message={["Product", "Account", "Theme", "Locale"]}>
+      <div className="flex flex-col w-full h-[100vh]">
+        <Navbar />
+        <div className="max-w-4xl min-w-[869px] mx-auto md:p-0 p-6 my-8 flex-1">
+          {children}
+        </div>
+        <footer className="bg-slate-800 text-white text-center py-8 w-full">
+          {t("label")}
+        </footer>
       </div>
-      <footer className="bg-slate-800 text-white text-center py-8 w-full">
-        {t("label")}
-      </footer>
-    </div>
+    </ClientProvider>
   );
 }

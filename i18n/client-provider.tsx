@@ -11,7 +11,7 @@ type Props = {
 
 export default async function ClientProvider({ children, message }: Props) {
   const messages = await getMessages();
-
+  
   return (
     <NextIntlClientProvider messages={pick(messages, message)}>
       {children}
