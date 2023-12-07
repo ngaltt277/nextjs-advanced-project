@@ -2,17 +2,15 @@
 import ProductCard from "@/components/products/ProductCard";
 import { Input } from "@/components/ui/input";
 import { CompleteProduct } from "@/lib/db/schema/products";
-import { Subscription } from "@/lib/db/schema/subscriptions";
 import { trpc } from "@/lib/trpc/client";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 
 type Props = {
   products: CompleteProduct[];
-  subscriptions: Subscription[];
 };
 
-export default function Home({ products, subscriptions }: Props) {
+export default function Home({ products }: Props) {
   const [filterProducts, setFilterProducts] = useState(products);
   const utils = trpc.useContext();
   const t = useTranslations("Product");
@@ -37,11 +35,7 @@ export default function Home({ products, subscriptions }: Props) {
       return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 my-4">
           {filterProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              subscriptions={subscriptions}
-            />
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       );

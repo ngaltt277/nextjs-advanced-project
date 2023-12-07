@@ -15,9 +15,9 @@ export const topProductsColumns: ColumnDef<any>[] = [
     header: () => <TranslateHeader message="Product" value="price" />,
   },
   {
-    accessorKey: "subscriptions",
+    accessorKey: "orders",
     header: () => <TranslateHeader message="Product" value="numOfKeys" />,
-    cell: ({ row }) => row.original._count.subscriptions,
+    cell: ({ row }) => row.original._count.orders,
   },
 ];
 
@@ -39,9 +39,9 @@ export const topCustomersColumns: ColumnDef<any>[] = [
     },
   },
   {
-    accessorKey: "Subscription",
+    accessorKey: "orders",
     header: () => <TranslateHeader message="Customer" value="numOfKeys" />,
-    cell: ({ row }) => row.original._count.Subscription,
+    cell: ({ row }) => row.original._count.orders,
   },
   {
     id: "action",

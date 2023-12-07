@@ -1,5 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { getUserById } from "../api/users/queries";
+import { createUser } from "../api/users/mutations";
+import { NewUserParams } from "../db/schema/users";
 
 export type AuthSession = {
   session: {
@@ -13,7 +16,6 @@ export type AuthSession = {
 };
 
 export const getUserAuth = async () => {
-  // find out more about setting up 'sessionClaims' (custom sessions) here: https://clerk.com/docs/backend-requests/making/custom-session-token
   const { userId, sessionClaims } = auth();
 
   if (userId) {
@@ -23,7 +25,7 @@ export const getUserAuth = async () => {
           id: userId,
           name: `${sessionClaims?.firstName} ${sessionClaims?.lastName}`,
           email: sessionClaims?.email,
-          role: (sessionClaims?.role as any).org_2Y9BAH4UE5M6DCOmO2LMagzI6Oh,
+          role: sessionClaims?.role as any,
           image: sessionClaims?.image,
         },
       },
@@ -34,7 +36,21 @@ export const getUserAuth = async () => {
 };
 
 export const checkAuth: any = async () => {
-  const { userId } = auth();
+  const { userId, sessionClaims } = auth();
 
   if (!userId) redirect("/sign-in");
+
+  const { user } = await getUserById(userId);
+  if (!user) {
+    const newUser: NewUserParams = {
+      id: userId,
+      firstName: `${sessionClaims?.firstName}`,
+      lastName: `${sessionClaims?.lastName}`,
+      email: `${sessionClaims?.email}`,
+      imageUrl: `${sessionClaims.image}`,
+      phoneNumber: `${sessionClaims?.phoneNumber}`,
+      role: "basic_member",
+    };
+    await createUser(newUser);
+  }
 };

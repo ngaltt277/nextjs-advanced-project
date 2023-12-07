@@ -2,14 +2,14 @@
 import { AccountCard, AccountCardFooter } from "./AccountCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Subscription } from "@/lib/db/schema/subscriptions";
 import { useTranslations } from "next-intl";
+import { Order } from "@/lib/db/schema/orders";
 
 type Props = {
-  subscriptions: Subscription[];
+  orders: Order[];
 };
 
-export default function SubscriptionSettings({ subscriptions }: Props) {
+export default function OrderSettings({ orders }: Props) {
   const t = useTranslations("Account.keys");
 
   return (
@@ -17,8 +17,8 @@ export default function SubscriptionSettings({ subscriptions }: Props) {
       params={{
         header: t("title"),
         description:
-          subscriptions.length > 0
-            ? t("description", { num: subscriptions.length })
+          orders.length > 0
+            ? t("description", { num: orders.length })
             : t("empty"),
       }}
     >

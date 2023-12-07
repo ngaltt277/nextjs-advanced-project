@@ -7,9 +7,8 @@ import { useMemo } from "react";
 enum PathnameEnum {
   Admin = "/admin",
   Products = "/admin/products",
-  Keys = "/admin/keys",
   Customers = "/admin/customers",
-  Features = "/admin/features",
+  Orders = "/admin/orders",
 }
 
 export default function Aside() {
@@ -70,28 +69,6 @@ export default function Aside() {
         ),
       },
       {
-        label: t("feature"),
-        path: PathnameEnum.Features,
-        icon: (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className=" w-4 h-4"
-          >
-            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
-            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
-            <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
-          </svg>
-        ),
-      },
-      {
         label: t("customer"),
         path: PathnameEnum.Customers,
         icon: (
@@ -115,8 +92,8 @@ export default function Aside() {
         ),
       },
       {
-        label: t("key"),
-        path: PathnameEnum.Keys,
+        label: "Order",
+        path: PathnameEnum.Orders,
         icon: (
           <svg
             xmlns="http://www.w3.org/2000/svg"

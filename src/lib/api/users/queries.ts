@@ -4,7 +4,7 @@ import { type UserId, userIdSchema } from "@/lib/db/schema/users";
 export const getUsers = async () => {
   const u = await db.user.findMany({
     where: { role: "basic_member" },
-    include: { Subscription: true },
+    include: { orders: true },
   });
   return { users: u };
 };
@@ -17,16 +17,16 @@ export const getUserById = async (id: UserId) => {
   return { user: u };
 };
 
-export const getTopUsers = async () => {
+export const getTopCustomers = async () => {
   return await db.user.findMany({
     where: { role: "basic_member" },
     include: {
       _count: {
-        select: { Subscription: true },
+        select: { orders: true },
       },
     },
     orderBy: {
-      Subscription: {
+      orders: {
         _count: "desc",
       },
     },

@@ -24,9 +24,9 @@ export const columns: ColumnDef<CompleteUser>[] = [
     header: "Email",
   },
   {
-    accessorKey: "Subscription",
-    header: "Num Of Keys",
-    cell: ({ row }) => row.original.Subscription.length,
+    accessorKey: "orders",
+    header: "Num Of Orders",
+    cell: ({ row }) => row.original.orders.length,
   },
   {
     id: "action",

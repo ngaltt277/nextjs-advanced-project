@@ -2,15 +2,15 @@ import React from "react";
 import KeyChart from "./KeyChart";
 import { DataTable } from "@/components/table/DataTable";
 import { topCustomersColumns, topProductsColumns } from "./columns";
-import { getTopUsers } from "@/lib/api/users/queries";
+import { getTopCustomers } from "@/lib/api/users/queries";
 import { getTopProducts } from "@/lib/api/products/queries";
-import { getSubscriptionsByCreatedDate } from "@/lib/api/subscriptions/queries";
 import { getTranslations } from "next-intl/server";
+import { getOrdersByCreatedDate } from "@/lib/api/orders/queries";
 
 const Admin = async () => {
   const products = await getTopProducts();
-  const users = await getTopUsers();
-  const keys = await getSubscriptionsByCreatedDate();
+  const users = await getTopCustomers();
+  const orders = await getOrdersByCreatedDate();
   const t = await getTranslations("Home");
 
   return (
@@ -30,7 +30,7 @@ const Admin = async () => {
           </div>
         </div>
       </div>
-      <KeyChart keys={keys} />
+      <KeyChart keys={orders} />
     </div>
   );
 };

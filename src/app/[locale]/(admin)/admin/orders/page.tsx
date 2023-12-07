@@ -1,21 +1,19 @@
-import NewFeatureModal from "@/components/features/FeatureModal";
 import { DataTable } from "@/components/table/DataTable";
-import { getFeatures } from "@/lib/api/features/queries";
 import { columns } from "./columns";
+import { getOrders } from "@/lib/api/orders/queries";
 
 export default async function Feature() {
-  const { features } = await getFeatures();
+  const { orders } = await getOrders();
 
   return (
     <main className="flex-grow px-6 mb-6">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-lg font-medium">Features</h1>
-        <NewFeatureModal emptyState />
+        <h1 className="text-lg font-medium">Orders</h1>
       </div>
       <div className="w-full overflow-auto">
         <DataTable
           columns={columns}
-          data={features}
+          data={orders}
           filterColumn="name"
           hasPaginations
         />

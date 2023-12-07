@@ -21,14 +21,14 @@ datasource db {
 }
 
 model User {
-  id           String         @id @default(cuid())
-  firstName    String
-  lastName     String
-  role         String
-  imageUrl     String?
-  email        String
-  phoneNumber  String?
-  Subscription Subscription[]
+  id          String  @id @default(cuid())
+  firstName   String
+  lastName    String
+  role        String
+  imageUrl    String?
+  email       String
+  phoneNumber String?
+  orders      Order[]
 }
 
 model Product {
@@ -36,8 +36,8 @@ model Product {
   name          String
   description   String
   price         Int
-  subscriptions Subscription[]
   features      Feature[]
+  orders        Order[]
 }
 
 model Feature {
@@ -47,11 +47,18 @@ model Feature {
 }
 
 model Subscription {
-  id          String    @id @default(cuid())
-  productId   String
-  product     Product   @relation(fields: [productId], references: [id])
-  createdDate DateTime? @default(now())
-  expiredDate DateTime?
-  userId      String
-  user        User      @relation(fields: [userId], references: [id])
+  id        String   @id @default(cuid())
+  Order     Order?   @relation(fields: [orderId], references: [id])
+  orderId   String?
+}
+
+model Order {
+  id            String         @id @default(cuid())
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  createdDate   DateTime?      @default(now())
+  expiredDate   DateTime?
+  subscriptions Subscription[]
+  Product       Product        @relation(fields: [productId], references: [id])
+  productId     String
 }

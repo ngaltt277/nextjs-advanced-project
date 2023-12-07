@@ -3,7 +3,7 @@ import { z } from "zod";
 import { getUsers } from "@/lib/api/users/queries";
 
 // Schema for Users - used to validate API requests
-export const insertUserSchema = userSchema.omit({ id: true });
+export const insertUserSchema = userSchema;
 
 export const insertUserParams = userSchema.extend({});
 

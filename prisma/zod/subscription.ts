@@ -1,17 +1,13 @@
 import * as z from "zod"
-import { CompleteProduct, relatedProductSchema, CompleteUser, relatedUserSchema } from "./index"
+import { CompleteOrder, relatedOrderSchema } from "./index"
 
 export const subscriptionSchema = z.object({
   id: z.string(),
-  productId: z.string(),
-  createdDate: z.date().nullish(),
-  expiredDate: z.date().nullish(),
-  userId: z.string(),
+  orderId: z.string().nullish(),
 })
 
 export interface CompleteSubscription extends z.infer<typeof subscriptionSchema> {
-  product: CompleteProduct
-  user: CompleteUser
+  Order?: CompleteOrder | null
 }
 
 /**
@@ -20,6 +16,5 @@ export interface CompleteSubscription extends z.infer<typeof subscriptionSchema>
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const relatedSubscriptionSchema: z.ZodSchema<CompleteSubscription> = z.lazy(() => subscriptionSchema.extend({
-  product: relatedProductSchema,
-  user: relatedUserSchema,
+  Order: relatedOrderSchema.nullish(),
 }))
