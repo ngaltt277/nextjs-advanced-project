@@ -31,26 +31,16 @@ export const columns: ColumnDef<CompleteOrder>[] = [
   {
     accessorKey: "product",
     header: "Product Name",
-    cell: ({ row }) => {
-      const {
-        Product: { id, name },
-      } = row.original;
-      return (
-        <Link href={`products/${id}`}>
-          <Button variant="link">{name}</Button>
-        </Link>
-      );
-    },
+    cell: ({ row }) => row.original.Product.name,
   },
   {
     accessorKey: "subscriptions",
-    header: "Num of keys",
-    cell: ({ row }) => row.original.subscriptions.length,
-  },
-  {
-    accessorKey: "createdDate",
-    header: "Subcribed Date",
-    cell: ({ row }) => formatDate(row.original.createdDate),
+    header: "Keys",
+    cell: ({ row }) => {
+      return row.original.subscriptions.map((subscription) => (
+        <li key={subscription.id}>{subscription.id}</li>
+      ));
+    },
   },
   {
     accessorKey: "expiredDate",

@@ -1,5 +1,5 @@
 import React from "react";
-import KeyChart from "./KeyChart";
+import Chart from "./Chart";
 import { DataTable } from "@/components/table/DataTable";
 import { topCustomersColumns, topProductsColumns } from "./columns";
 import { getTopCustomers } from "@/lib/api/users/queries";
@@ -30,7 +30,7 @@ const Admin = async () => {
           </div>
         </div>
       </div>
-      <KeyChart keys={orders} />
+      <Chart keys={orders} />
     </div>
   );
 };

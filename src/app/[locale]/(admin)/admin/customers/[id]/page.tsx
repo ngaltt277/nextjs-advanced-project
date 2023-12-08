@@ -1,9 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getSubscriptionsByCustomerId } from "@/lib/api/subscriptions/queries";
 import { getUserById } from "@/lib/api/users/queries";
 import Link from "next/link";
-import KeyCard from "@/components/KeyCard";
+import OrderCard from "@/components/OrderCard";
 import { ChevronRightIcon } from "lucide-react";
+import { getOrdersByCustomerId } from "@/lib/api/orders/queries";
 
 type Props = {
   params: { id: string };
@@ -11,24 +11,24 @@ type Props = {
 
 export default async function CustomerDetail({ params }: Props) {
   const { user } = await getUserById(params.id);
-  const { subscriptions } = await getSubscriptionsByCustomerId(params.id);
+  const { orders } = await getOrdersByCustomerId(params.id);
 
   const renderProfileItem = (label: string, value: any) => {
     return (
       <div className="flex mb-4">
-        <p className="w-1/3 text-base font-medium">{label}</p>
+        <p className="w-1/3 text-sm font-medium">{label}</p>
         <div className="w-2/3">{value || "none"}</div>
       </div>
     );
   };
 
-  const renderKeys = () => {
-    if (subscriptions.length > 0) {
-      return subscriptions.map((subscription) => (
-        <KeyCard key={subscription.id} subscription={subscription} />
+  const renderOrders = () => {
+    if (orders.length > 0) {
+      return orders.map((order) => (
+        <OrderCard key={order.id} order={order} />
       ));
     }
-    return <p className="w-1/3 text-base font-medium">No keys</p>;
+    return <p className="w-1/3 text-base font-medium">No orders</p>;
   };
 
   return (
@@ -66,11 +66,11 @@ export default async function CustomerDetail({ params }: Props) {
         </div>
         <div className="flex-grow mt-4">
           <div className="mb-4">
-            <h1 className="text-lg font-medium">Keys</h1>
+            <h1 className="text-lg font-medium">Orders</h1>
             <hr className="my-4" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-4">
-            {renderKeys()}
+          <div className="w-full">
+            {renderOrders()}
           </div>
         </div>
       </div>

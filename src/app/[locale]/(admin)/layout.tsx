@@ -19,7 +19,8 @@ type Props = {
 export default async function RootLayout({ children }: Props) {
   await checkAuth();
   const { session } = await getUserAuth();
-
+  console.log(session?.user.role);
+  
   if (!session || session.user.role !== "admin") return redirect("/");
 
   return (

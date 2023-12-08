@@ -25,8 +25,9 @@ export default authMiddleware({
     const { userId, sessionClaims } = auth;
     if (
       userId &&
-      (sessionClaims.role as any)[`${process.env.CLERK_ORGANIZATION_ID}`] ===
-        "admin" &&
+      (sessionClaims.organizations as any)[
+        `${process.env.CLERK_ORGANIZATION_ID}`
+      ] === "admin" &&
       req.nextUrl.pathname === "/"
     ) {
       const adminPath = new URL("/admin", req.url);

@@ -24,7 +24,7 @@ type Props = {
 };
 
 export default function ProductDetail({ product }: Props) {
-  const [numOfKeys, setNumOfKeys] = useState(0);
+  const [numOfKeys, setNumOfKeys] = useState(1);
   const utils = trpc.useContext();
   const router = useRouter();
   const t = useTranslations("Product");
@@ -82,8 +82,8 @@ export default function ProductDetail({ product }: Props) {
           {product?.name}
         </h1>
       </div>
-      <div className="w-full mt-5 flex gap-10">
-        <div className="flex flex-col gap-4 flex-auto">
+      <div className="w-full mt-5 flex gap-10 justify-between">
+        <div className="flex flex-col gap-4 mt-4">
           <h2 className="text-2xl font-semibold">{product?.name}</h2>
           <div className="text-gray-500">{product?.description}</div>
           <div className="text-green-600 text-base font-semibold">
@@ -98,14 +98,14 @@ export default function ProductDetail({ product }: Props) {
             ))}
           </div>
         </div>
-        <Card className="flex-initial flex flex-col gap-4 p-5">
-          <div className="flex items-center gap-8">
+        <Card className="flex flex-col gap-4 p-5">
+          <div className="flex items-center gap-8"> 
             <div>Num of keys</div>
             <div className="flex">
               <Button
                 className="rounded-none p-2"
                 onClick={onMinusClick}
-                disabled={numOfKeys === 0}
+                disabled={numOfKeys <= 1}
               >
                 <MinusIcon className="w-4 h-4" />
               </Button>
@@ -123,6 +123,13 @@ export default function ProductDetail({ product }: Props) {
           <div className="flex items-center gap-8 justify-between">
             <p>Expired Date:</p>
             <span>{formatDate(addYears(new Date(), 1))}</span>
+          </div>
+          <hr />
+          <div className="flex items-center gap-8 justify-between">
+            <p className="text-lg font-medium text-green-700">Total:</p>
+            <p className="text-lg font-medium text-green-700">
+              ${product!.price * numOfKeys}
+            </p>
           </div>
           <Button
             className="mt-5 text-white"

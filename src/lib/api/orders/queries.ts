@@ -13,7 +13,7 @@ export const getOrdersByUserId = async () => {
   const { session } = await getUserAuth();
   const o = await db.order.findMany({
     where: { userId: session?.user.id! },
-    include: { Product: true, user: true },
+    include: { Product: true, user: true, subscriptions: true },
   });
   return { orders: o };
 };
@@ -21,7 +21,7 @@ export const getOrdersByUserId = async () => {
 export const getOrdersByCustomerId = async (customerId: string) => {
   const o = await db.order.findMany({
     where: { userId: customerId },
-    include: { Product: true },
+    include: { Product: true, subscriptions: true, user: true },
   });
   return { orders: o };
 };

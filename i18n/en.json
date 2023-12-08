@@ -26,7 +26,7 @@
     "name": "Name",
     "description": "Description",
     "price": "Price",
-    "numOfKeys": "Num of keys",
+    "numOfOrders": "Num of orders",
     "features": "Features",
     "numOfFeatures": "Num of features",
     "selectFeatures": "Select features",
@@ -42,11 +42,11 @@
   },
   "Account": {
     "label": "Account",
-    "keys": {
-      "title": "Your Keys",
-      "description": "You are subscribed {num} keys",
-      "empty": "You are not subscribed to any keys",
-      "more-info": "Manage your key",
+    "orders": {
+      "title": "Your Orders",
+      "description": "You has {num} orders",
+      "empty": "You did not ordered any products",
+      "more-info": "Manage your orders",
       "detail": "Detail"
     },
     "name": {
@@ -75,8 +75,8 @@
     "empty": "No keys",
     "using": "Using",
     "expired": "Expired",
-    "expired-desc": "Your key was expired in",
-    "using-desc": "Your key will be expired in",
+    "expired-desc": "These keys was expired in",
+    "using-desc": "These keys will be expired in",
     "customerName": "Customer Name",
     "productName": "Product Name",
     "subscribeDate": "Subscribed Date",
@@ -98,7 +98,7 @@
   "Customer": {
     "title": "Customers",
     "name": "Name",
-    "numOfKeys": "Num of keys",
+    "numOfOrders": "Num of orders",
     "id": "Customer ID",
     "firstName": "First Name",
     "lastName": "Last Name",
@@ -108,11 +108,24 @@
     "none": "none"
   },
   "Chart": {
-    "title": "Num of keys created each days",
-    "label": "Num of keys"
+    "title": "Num of orders created each days",
+    "label": "Num of orders"
   },
   "Features": {
     "title": "Features",
     "name": "Name"
+  },
+  "Order": {
+    "back": "Back",
+    "title": "Your Orders",
+    "empty": "No keys",
+    "using": "Using",
+    "expired": "Expired",
+    "expired-desc": "These keys was expired in",
+    "using-desc": "These keys will be expired in",
+    "customerName": "Customer Name",
+    "productName": "Product Name",
+    "subscribeDate": "Subscribed Date",
+    "expiredDate": "Expired Date"
   }
 }

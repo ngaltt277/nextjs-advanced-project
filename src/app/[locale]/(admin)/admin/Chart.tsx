@@ -25,7 +25,7 @@ type Props = {
   keys: any;
 };
 
-export default function KeyChart({ keys }: Props) {
+export default function Chart({ keys }: Props) {
   const t = useTranslations("Chart");
   
   const options = {

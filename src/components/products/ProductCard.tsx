@@ -50,7 +50,7 @@ export default function ProductCard({ product }: Props) {
       <CardFooter className="flex items-end justify-center">
         <Link href={`/${product.id}`}>
           <Button className="text-center" variant="default">
-            Purchase
+            Order
           </Button>
         </Link>
       </CardFooter>

@@ -26,7 +26,7 @@
     "name": "Tên sản phẩm",
     "description": "Mô tả",
     "price": "Giá",
-    "numOfKeys": "Số lượng key",
+    "numOfOrders": "Số lần mua",
     "features": "Tính năng",
     "numOfFeatures": "Số tính năng",
     "selectFeatures": "Chọn tính năng",
@@ -42,11 +42,11 @@
   },
   "Account": {
     "label": "Thông tin tài khoản",
-    "keys": {
-      "title": "Key của bạn",
-      "description": "Bạn đã mua {num} keys",
-      "empty": "Bạn chưa mua bất kì key nào",
-      "more-info": "Quản lý key",
+    "orders": {
+      "title": "Giỏ hàng của bạn",
+      "description": "Bạn đã có {num} lần đặt hàng",
+      "empty": "Bạn chưa mua bất kì sản phẩm nào",
+      "more-info": "Quản lý giỏ hàng",
       "detail": "Chi tiết"
     },
     "name": {
@@ -98,7 +98,7 @@
   "Customer": {
     "title": "Danh sách khách hàng",
     "name": "Họ và tên",
-    "numOfKeys": "Số lượng key",
+    "numOfOrders": "Số lần mua",
     "id": "Mã khách hàng",
     "firstName": "Họ và tên đệm",
     "lastName": "Tên",
@@ -108,8 +108,8 @@
     "none": "trống"
   },
   "Chart": {
-    "title": "Số lượng key đăng ký trong ngày",
-    "label": "Số lượng key"
+    "title": "Số lượng mua trong ngày",
+    "label": "Số lượng mua"
   },
   "Features": {
     "title": "Danh sách tính năng",
@@ -121,5 +121,18 @@
     "previousPage": "Về lại trang trước",
     "nextPage": "Đi đến trang tiếp theo",
     "lastPage": "Đi đến trang cuối cùng"
+  },
+  "Order": {
+    "title": "Giỏ hàng của bạn",
+    "back": "Quay lại",
+    "empty": "Danh sách rỗng",
+    "using": "Đang sử dụng",
+    "expired": "Hết hạn",
+    "expired-desc": "Keys đã hết hạn vào ngày",
+    "using-desc": "Keys sẽ hết hạn vào ngày",
+    "customerName": "Tên khách hàng",
+    "productName": "Tên sản phẩm",
+    "subscribeDate": "Ngày đăng ký",
+    "expiredDate": "Ngày hết hạn"
   }
 }

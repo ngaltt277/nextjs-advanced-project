@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function OrderSettings({ orders }: Props) {
-  const t = useTranslations("Account.keys");
+  const t = useTranslations("Account.orders");
 
   return (
     <AccountCard
@@ -23,7 +23,7 @@ export default function OrderSettings({ orders }: Props) {
       }}
     >
       <AccountCardFooter description={t("more-info")}>
-        <Link href="account/keys">
+        <Link href="account/orders">
           <Button variant="outline">{t("detail")}</Button>
         </Link>
       </AccountCardFooter>

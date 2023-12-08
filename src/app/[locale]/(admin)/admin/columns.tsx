@@ -16,7 +16,7 @@ export const topProductsColumns: ColumnDef<any>[] = [
   },
   {
     accessorKey: "orders",
-    header: () => <TranslateHeader message="Product" value="numOfKeys" />,
+    header: () => <TranslateHeader message="Product" value="numOfOrders" />,
     cell: ({ row }) => row.original._count.orders,
   },
 ];
@@ -40,7 +40,7 @@ export const topCustomersColumns: ColumnDef<any>[] = [
   },
   {
     accessorKey: "orders",
-    header: () => <TranslateHeader message="Customer" value="numOfKeys" />,
+    header: () => <TranslateHeader message="Customer" value="numOfOrders" />,
     cell: ({ row }) => row.original._count.orders,
   },
   {
