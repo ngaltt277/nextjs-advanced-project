@@ -23,11 +23,11 @@ export default authMiddleware({
   },
   async afterAuth(auth, req) {
     const { userId, sessionClaims } = auth;
+    const session: any = sessionClaims;
+    const orgId = process.env.CLERK_ORGANIZATION_ID ?? "";
     if (
       userId &&
-      (sessionClaims.organizations as any)[
-        `${process.env.CLERK_ORGANIZATION_ID}`
-      ] === "admin" &&
+      session.organizations[orgId] === "admin" &&
       req.nextUrl.pathname === "/"
     ) {
       const adminPath = new URL("/admin", req.url);
