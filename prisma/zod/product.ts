@@ -3,22 +3,10 @@ import { CompleteFeature, relatedFeatureSchema, CompleteOrder, relatedOrderSchem
 
 export const productSchema = z.object({
   id: z.string(),
-  name: z.string({ required_error: "Name is required" }),
-  description: z
-    .string({ required_error: "Name is required" })
-    .min(5, "Description is greater than 5 characters"),
-  price: z.number().int().positive(),
-  features: z
-    .array(
-      z.object({
-        id: z.string(),
-        name: z.string(),
-      })
-    )
-    .refine((value) => value.some((feature) => feature), {
-      message: "You have to select at least one item.",
-    }),
-});
+  name: z.string(),
+  description: z.string(),
+  price: z.number().int(),
+})
 
 export interface CompleteProduct extends z.infer<typeof productSchema> {
   features: CompleteFeature[]

@@ -43,8 +43,10 @@ export const checkAuth: any = async () => {
   if (!userId) redirect("/sign-in");
 
   const { user } = await getUserById(userId);
+
   if (!user && sessionClaims) {
     const session: any = sessionClaims;
+    const orgId = process.env.CLERK_ORGANIZATION_ID ?? "";
     const newUser: NewUserParams = {
       id: userId,
       firstName: `${session.firstName}`,
@@ -52,9 +54,7 @@ export const checkAuth: any = async () => {
       email: `${session.email}`,
       imageUrl: `${session.image}`,
       phoneNumber: `${session.phoneNumber}`,
-      role:
-        session.organizations[`${process.env.CLERK_ORGANIZATION_ID}`] ??
-        "basic_member",
+      role: session.organizations[orgId] ?? "basic_member",
     };
     await createUser(newUser);
   }
